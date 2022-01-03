@@ -1,23 +1,31 @@
 import logo from './logo.svg';
 import './App.css';
+import {useState} from "react";
 
 function App() {
-  return (
+    const [shoppingList, setShoppingList]=useState([]);
+    const [newShoppingItem, setNewShoppingItem]=useState("");
+function addShoppingItem(){
+    console.log(newShoppingItem)
+    setShoppingList([...shoppingList,newShoppingItem])
+}
+
+    return (
     <div className="App">
       <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
         <p>
-          Edit <code>src/App.js</code> and save to reload.
+          <code><h1>Einkaufliste</h1></code>
         </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
+
+        <ul>{shoppingList.map(shoppingItem =>
+            <li>{shoppingItem}</li>
+        ) }</ul>
+        <input type="text" onChange={event => setNewShoppingItem(event.target.value)}/>
+        <button onClick={addShoppingItem}> Add </button>
       </header>
+
+
+
     </div>
   );
 }
